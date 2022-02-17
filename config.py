@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Config:
-    name: str = "test"  # vit beit swin
+    name: str = "some_experiment_name"
     device: str = "cuda"
     log_path: str = "logs"
     data_path: str = "raw"
@@ -19,5 +19,5 @@ class Config:
     classifier_lr: float = 1e-5
     split: float = 0.95
     threshold: int = 5
-    batch_size: int = 64  # 64 for swin + cait, 96 for rest, 1024 if freeze
+    batch_size: int = 96
     num_workers: int = 2
