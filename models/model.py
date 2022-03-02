@@ -23,7 +23,5 @@ def get_model_with_preprocessor(model_name, device="cpu"):
         model.backbone = model.vit
     elif hasattr(model, "beit"):
         model.backbone = model.beit
-    elif hasattr(model, "swin"):
-        model.backbone = model.swin
     model = model.to(device)
     return model, preprocessor
