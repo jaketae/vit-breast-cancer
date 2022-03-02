@@ -33,13 +33,13 @@ $ CUDA_VISIBLE_DEVICES=1 python evaluate.py --device cuda --checkpoint checkpoin
 We used the [Breast Histopathology Images dataset](https://www.kaggle.com/paultimothymooney/breast-histopathology-images). You can either download the dataset directly from the website, or use Kaggle's Python API to download it via the command line. For detailed instructions on how to use the Kaggle API, refer to the [documentation](https://www.kaggle.com/docs/api).
 
 ```
-kaggle datasets download paultimothymooney/breast-histopathology-images
+$ kaggle datasets download paultimothymooney/breast-histopathology-images
 ```
 
 Create a subfolder within the directory, such as `raw`, then unzip the dataset via
 
 ```
-unzip breast-histopathology-images.zip -d raw
+$ unzip breast-histopathology-images.zip -d raw
 ```
 
 ## Training
