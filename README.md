@@ -11,18 +11,22 @@ This repository contains code for [Visualizing Transformers for Breast Histopath
 1. Clone the repository.
 
 ```
-git clone https://github.com/jaketae/vit-breast-cancer.git
+$ git clone https://github.com/jaketae/vit-breast-cancer.git
 ```
 
 2. Create a Python virtual enviroment and install package requirements.
 
 ```
-cd vit-breast-cancer
-python -m venv venv
-pip install -r requirements.txt
+$ cd vit-breast-cancer
+$ python -m venv venv
+$ pip install -r requirements.txt
 ```
 
-3. To train a model, run `python train.py`; for evaluation, `python evaluate.py`.
+3. To train a model, run `python train.py`; for evaluation, `python evaluate.py` with appropriate flags. For instance, 
+
+```
+$ CUDA_VISIBLE_DEVICES=1 python evaluate.py --device cuda --checkpoint checkpoints/vit_freeze
+```
 
 ## Dataset
 
@@ -40,15 +44,58 @@ unzip breast-histopathology-images.zip -d raw
 
 ## Training
 
-To train the model, run
+To evaluate a model checkpoint, run `train.py`. The full list of supported arguments are shown below.
+
 
 ```
-python train.py
+$ python train.py -h
+usage: train.py [-h] [--name NAME] [--device DEVICE] [--log_path LOG_PATH] [--data_path DATA_PATH] [--save_path SAVE_PATH]
+                [--model MODEL] [--freeze FREEZE] [--epochs EPOCHS] [--lr LR] [--classifier_lr CLASSIFIER_LR] [--split SPLIT]
+                [--threshold THRESHOLD] [--batch_size BATCH_SIZE] [--num_workers NUM_WORKERS]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --name NAME
+  --device DEVICE
+  --log_path LOG_PATH
+  --data_path DATA_PATH
+  --save_path SAVE_PATH
+  --model MODEL
+  --freeze FREEZE
+  --epochs EPOCHS
+  --lr LR
+  --classifier_lr CLASSIFIER_LR
+  --split SPLIT
+  --threshold THRESHOLD
+  --batch_size BATCH_SIZE
+  --num_workers NUM_WORKERS
 ```
 
-Training configurations, such as model type, learning rate, and batch size are all specified in `config.py`. Modify the configuration file directly before running the command.
+Default configurations are specified in `config.py`.
 
 Running this command will create a folder under `checkpoints` and `logs` according to the name field specified in the configuration file. `checkpoints` will contain model weights, and `logs` will contain tensorboard logs for model training inspection.
+
+## Evaluation
+
+To evaluate a model checkpoint, run `evaluate.py`. The full list of supported arguments are shown below.
+
+```
+$ python evaluate.py -h
+usage: evaluate.py [-h] [--device DEVICE] [--checkpoint CHECKPOINT]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --device DEVICE
+  --checkpoint CHECKPOINT
+```
+
+For example, assuming a `vit_freeze` checkpoint and a CUDA-enabled local machine, run
+
+```
+$ CUDA_VISIBLE_DEVICES=1 python evaluate.py --device cuda --checkpoint checkpoints/vit_freeze
+```
+
+If CUDA is not available, you can also set the `device` flag to `cpu`.
 
 ## References
 
@@ -60,4 +107,4 @@ Running this command will create a folder under `checkpoints` and `logs` accordi
 
 ## License
 
-Released under the MIT License.
+Released under the [MIT License](LICENSE).
