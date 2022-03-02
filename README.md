@@ -44,7 +44,7 @@ $ unzip breast-histopathology-images.zip -d raw
 
 ## Training
 
-To evaluate a model checkpoint, run `train.py`. The full list of supported arguments are shown below.
+To evaluate a model checkpoint, run [`train.py`](train.py). The full list of supported arguments are shown below.
 
 
 ```
@@ -71,13 +71,13 @@ optional arguments:
   --num_workers NUM_WORKERS
 ```
 
-Default configurations are specified in `config.py`.
+Default configurations are specified in [`config.py`](config.py).
 
 Running this command will create a folder under `checkpoints` and `logs` according to the name field specified in the configuration file. `checkpoints` will contain model weights, and `logs` will contain tensorboard logs for model training inspection.
 
 ## Evaluation
 
-To evaluate a model checkpoint, run `evaluate.py`. The full list of supported arguments are shown below.
+To evaluate a model checkpoint, run [`evaluate.py`](evaluate.py). The full list of supported arguments are shown below.
 
 ```
 $ python evaluate.py -h
